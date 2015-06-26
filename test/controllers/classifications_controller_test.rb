@@ -8,7 +8,7 @@ class ClassificationsControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:classifications)
+    assert_not_nil assigns(:classifiers)
   end
 
   test "should get new" do

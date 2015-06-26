@@ -1,0 +1,6 @@
+= form_tag '', method: 'get', html: { class: "form form-horizontal classifier" }
+  .form-group
+    = label_tag :types, nil, :class => 'control-label'
+    .controls
+      = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select', :multiple => true
+  = submit_tag 'Search', :class => 'btn btn-primary'

@@ -2,7 +2,7 @@ class Tweet
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  CRIMES = %W[arson burglary crime domestic\ abuse embezzlement felony forgery human\ trafficking kidnapping
+  CRIMES = %W[arson burglary domestic\ abuse embezzlement felony forgery human\ trafficking kidnapping
           larceny manslaughter moral\ turpitude murder prostitution receiving robbery stalking theft treason trespass]
 
 
@@ -36,60 +36,90 @@ class Tweet
 
   index({ created_at: 1 }, {name: 'created_at_index' })
 
-  def self.count_crimes(types = ['crime'], limit=1000)
+  def self.count_crimes(types = ['crime'], limit=2000)
+    results = {benchmark: {}}
+    result_traditional = Hash[types.product([0])]
+    result_aggregation = Hash[types.product([0])]
+    result_map_reduce = Hash[types.product([0])]
+
     # Solution using traditional way
-    # puts Benchmark.measure{
-    #   result_traditional = Hash[types.product([0])]
-    #   Tweet.only(:tweet_text).limit(limit).each do |tweet|
-    #     types.each do |type|
-    #       if tweet.tweet_text.match(/#{type}/i)
-    #         result_traditional[type] += 1
-    #       end
-    #     end
-    #   end
-    #   puts "Traditional: #{result_traditional}"
-    # }
+    results[:benchmark][:traditional] = Benchmark.measure{
+      Tweet.only(:tweet_text).limit(limit).each do |tweet|
+        types.each do |type|
+          if tweet.tweet_text.match(/#{type}/i)
+            result_traditional[type] += 1
+          end
+        end
+      end
+      puts "Traditional: #{result_traditional}"
+    }.real
 
 
     # Solution using aggregation framework
-    puts Benchmark.measure{
-      result_aggregation = Hash[types.product([0])]
+    results[:benchmark][:aggregation] = Benchmark.measure{
       max_tweet = Tweet.offset(limit).first
       types.each do |type|
         result_aggregation[type] += Tweet.where(:id.lt => max_tweet.id, tweet_text: /#{type}/i).count
       end
       puts "Aggregation: #{result_aggregation.inspect}"
-    }
+    }.real
 
 
     # Solution using map reduce
-    # map = %Q{
-    #   function(){
-    #       var tweet = this;
-    #       #{types.to_s}.forEach(function(key){
-    #         if(tweet.tweet_text.search(new RegExp(key, 'i')) > -1)
-    #           emit(key, 1);
-    #       });
-    #   }
-    # }
-    #
-    # reduce = %Q{
-    #   function(key, values){
-    #     var count = 0;
-    #     values.forEach(function(value) {
-    #       count += value;
-    #     });
-    #     return count;
-    #   }
-    # }
+    map = %Q{
+      function(){
+          var tweet = this;
+          #{types.to_s}.forEach(function(key){
+            if(tweet.tweet_text.search(new RegExp(key, 'i')) > -1)
+              emit(key, 1);
+          });
+      }
+    }
 
-    # puts Benchmark.measure{
-    #   result_map_reduce = Hash[types.product([0])]
-    #   Tweet.limit(limit).map_reduce(map, reduce).out(inline: true).each do |result|
-    #     result_map_reduce[result['_id']] += result['value']
-    #   end
-    #   puts "Map Reduce: #{result_map_reduce}"
-    # }
+    reduce = %Q{
+      function(key, values){
+        var count = 0;
+        values.forEach(function(value) {
+          count += value;
+        });
+        return count;
+      }
+    }
+
+    results[:benchmark][:mapreduce] = Benchmark.measure{
+      Tweet.limit(limit).map_reduce(map, reduce).out(inline: true).each do |result|
+        result_map_reduce[result['_id']] += result['value']
+      end
+      puts "Map Reduce: #{result_map_reduce}"
+    }.real
+
+    results[:data] = result_aggregation
+    return results
+  end
+
+  def self.count_by_country(type, limit = 10000)
+    map = %Q{
+      function(){
+          if(this.tweet_text.search(new RegExp('#{type}', 'i')) > -1)
+            emit(this.tweet_place['country'], 1);
+      }
+    }
+
+    reduce = %Q{
+      function(key, values){
+        var count = 0;
+        values.forEach(function(value) {
+          count += value;
+        });
+        return count;
+      }
+    }
+
+    results = {}
+    Tweet.where(:tweet_place.ne => nil).limit(limit).map_reduce(map, reduce).out(inline: true).each do |result|
+      results[result['_id']] = result['value']
+    end
+    return results
   end
 
   def self.collect_tweets

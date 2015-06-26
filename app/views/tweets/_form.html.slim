@@ -1,0 +1,124 @@
+= form_for @tweet, html: { class: "form form-horizontal tweet" } do |f|
+  .form-group
+    = f.label :tweet_metadata, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_metadata, :class => 'form-control'
+    = error_span(@tweet[:tweet_metadata])
+  .form-group
+    = f.label :tweet_id, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_id, :class => 'form-control'
+    = error_span(@tweet[:tweet_id])
+  .form-group
+    = f.label :tweet_id_str, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_id_str, :class => 'form-control'
+    = error_span(@tweet[:tweet_id_str])
+  .form-group
+    = f.label :tweet_created_at, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_created_at, :class => 'form-control'
+    = error_span(@tweet[:tweet_created_at])
+  .form-group
+    = f.label :tweet_text, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_text, :class => 'form-control'
+    = error_span(@tweet[:tweet_text])
+  .form-group
+    = f.label :tweet_source, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_source, :class => 'form-control'
+    = error_span(@tweet[:tweet_source])
+  .form-group
+    = f.label :tweet_truncated, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_truncated, :class => 'form-control'
+    = error_span(@tweet[:tweet_truncated])
+  .form-group
+    = f.label :tweet_in_reply_to_status_id, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_in_reply_to_status_id, :class => 'form-control'
+    = error_span(@tweet[:tweet_in_reply_to_status_id])
+  .form-group
+    = f.label :tweet_in_reply_to_status_id_str, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_in_reply_to_status_id_str, :class => 'form-control'
+    = error_span(@tweet[:tweet_in_reply_to_status_id_str])
+  .form-group
+    = f.label :tweet_in_reply_to_user_id, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_in_reply_to_user_id, :class => 'form-control'
+    = error_span(@tweet[:tweet_in_reply_to_user_id])
+  .form-group
+    = f.label :tweet_in_reply_to_user_id_str, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_in_reply_to_user_id_str, :class => 'form-control'
+    = error_span(@tweet[:tweet_in_reply_to_user_id_str])
+  .form-group
+    = f.label :tweet_in_reply_to_screen_name, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_in_reply_to_screen_name, :class => 'form-control'
+    = error_span(@tweet[:tweet_in_reply_to_screen_name])
+  .form-group
+    = f.label :tweet_user, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_user, :class => 'form-control'
+    = error_span(@tweet[:tweet_user])
+  .form-group
+    = f.label :tweet_coordinates, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_coordinates, :class => 'form-control'
+    = error_span(@tweet[:tweet_coordinates])
+  .form-group
+    = f.label :tweet_place, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_place, :class => 'form-control'
+    = error_span(@tweet[:tweet_place])
+  .form-group
+    = f.label :tweet_contributors, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_contributors, :class => 'form-control'
+    = error_span(@tweet[:tweet_contributors])
+  .form-group
+    = f.label :tweet_is_quote_status, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_is_quote_status, :class => 'form-control'
+    = error_span(@tweet[:tweet_is_quote_status])
+  .form-group
+    = f.label :tweet_entities, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_entities, :class => 'form-control'
+    = error_span(@tweet[:tweet_entities])
+  .form-group
+    = f.label :tweet_favorited, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_favorited, :class => 'form-control'
+    = error_span(@tweet[:tweet_favorited])
+  .form-group
+    = f.label :tweet_retweeted, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_retweeted, :class => 'form-control'
+    = error_span(@tweet[:tweet_retweeted])
+  .form-group
+    = f.label :tweet_possibly_sensitive, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_possibly_sensitive, :class => 'form-control'
+    = error_span(@tweet[:tweet_possibly_sensitive])
+  .form-group
+    = f.label :tweet_lang, :class => 'control-label'
+    .controls
+      = f.text_field :tweet_lang, :class => 'form-control'
+    = error_span(@tweet[:tweet_lang])
+  .form-group
+    = f.label :categories, :class => 'control-label'
+    .controls
+      = f.text_field :categories, :class => 'form-control'
+    = error_span(@tweet[:categories])
+  .form-group
+    = f.label :thread, :class => 'control-label'
+    .controls
+      = f.text_field :thread, :class => 'form-control'
+    = error_span(@tweet[:thread])
+  = f.submit nil, :class => 'btn btn-primary'
+  '
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), tweets_path, :class => 'btn'

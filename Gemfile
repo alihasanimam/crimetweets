@@ -50,3 +50,11 @@ gem 'twitter-bootstrap-rails'
 
 # Slim Template
 gem 'slim-rails'
+
+# Pagination Support
+gem 'kaminari'
+
+#Chart Library
+gem 'chartkick'
+
+gem 'chosen-rails'

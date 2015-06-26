@@ -1,0 +1,102 @@
+- model_class = Tweet
+div class="page-header"
+  h1=t '.title', :default => model_class.model_name.human.titleize
+
+p
+  strong= model_class.human_attribute_name(:tweet_metadata) + ':'
+  br
+  = @tweet.tweet_metadata
+p
+  strong= model_class.human_attribute_name(:tweet_id) + ':'
+  br
+  = @tweet.tweet_id
+p
+  strong= model_class.human_attribute_name(:tweet_id_str) + ':'
+  br
+  = @tweet.tweet_id_str
+p
+  strong= model_class.human_attribute_name(:tweet_created_at) + ':'
+  br
+  = @tweet.tweet_created_at
+p
+  strong= model_class.human_attribute_name(:tweet_text) + ':'
+  br
+  = @tweet.tweet_text
+p
+  strong= model_class.human_attribute_name(:tweet_source) + ':'
+  br
+  = @tweet.tweet_source
+p
+  strong= model_class.human_attribute_name(:tweet_truncated) + ':'
+  br
+  = @tweet.tweet_truncated
+p
+  strong= model_class.human_attribute_name(:tweet_in_reply_to_status_id) + ':'
+  br
+  = @tweet.tweet_in_reply_to_status_id
+p
+  strong= model_class.human_attribute_name(:tweet_in_reply_to_status_id_str) + ':'
+  br
+  = @tweet.tweet_in_reply_to_status_id_str
+p
+  strong= model_class.human_attribute_name(:tweet_in_reply_to_user_id) + ':'
+  br
+  = @tweet.tweet_in_reply_to_user_id
+p
+  strong= model_class.human_attribute_name(:tweet_in_reply_to_user_id_str) + ':'
+  br
+  = @tweet.tweet_in_reply_to_user_id_str
+p
+  strong= model_class.human_attribute_name(:tweet_in_reply_to_screen_name) + ':'
+  br
+  = @tweet.tweet_in_reply_to_screen_name
+p
+  strong= model_class.human_attribute_name(:tweet_user) + ':'
+  br
+  = @tweet.tweet_user
+p
+  strong= model_class.human_attribute_name(:tweet_coordinates) + ':'
+  br
+  = @tweet.tweet_coordinates
+p
+  strong= model_class.human_attribute_name(:tweet_place) + ':'
+  br
+  = @tweet.tweet_place
+p
+  strong= model_class.human_attribute_name(:tweet_contributors) + ':'
+  br
+  = @tweet.tweet_contributors
+p
+  strong= model_class.human_attribute_name(:tweet_is_quote_status) + ':'
+  br
+  = @tweet.tweet_is_quote_status
+p
+  strong= model_class.human_attribute_name(:tweet_entities) + ':'
+  br
+  = @tweet.tweet_entities
+p
+  strong= model_class.human_attribute_name(:tweet_favorited) + ':'
+  br
+  = @tweet.tweet_favorited
+p
+  strong= model_class.human_attribute_name(:tweet_retweeted) + ':'
+  br
+  = @tweet.tweet_retweeted
+p
+  strong= model_class.human_attribute_name(:tweet_possibly_sensitive) + ':'
+  br
+  = @tweet.tweet_possibly_sensitive
+p
+  strong= model_class.human_attribute_name(:tweet_lang) + ':'
+  br
+  = @tweet.tweet_lang
+p
+  strong= model_class.human_attribute_name(:categories) + ':'
+  br
+  = @tweet.categories
+p
+  strong= model_class.human_attribute_name(:thread) + ':'
+  br
+  = @tweet.thread
+
+= link_to t('.back', :default => t("helpers.links.back")), tweets_path, :class => 'btn btn-default'

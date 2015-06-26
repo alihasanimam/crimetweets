@@ -1,0 +1,10 @@
+= javascript_include_tag '//www.google.com/jsapi', 'chartkick'
+= render :partial => 'tweet_form'
+.row
+  - if @results.present?
+    .col-lg-6
+      = bar_chart(@results[:data])
+    .col-lg-6
+      = pie_chart(@results[:benchmark])
+.row
+  = geo_chart(@result)
