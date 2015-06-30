@@ -1,0 +1,52 @@
+= javascript_include_tag '//www.google.com/jsapi', 'chartkick'
+
+h1 Classify Crime Tweets
+p
+  | There are 2.5 millions tweets have been collected so far by a twitter crawler.
+  |  These tweets have been stored in a MongoDB cluster. The
+  a.red href="#{text_classifiers_path}"  Naive Bayes Classifier
+  |  has been used to classify crime types a tweet is talking about. The solution has been done in three
+  |  different ways.
+  ol
+    li
+      strong Traditional:
+      |  First tweets have been collected from database, than loop through all tweets
+      |  and perform naive bayes classifier to detect a crime type.
+    li
+      strong Aggregation:
+      |  The classifier has been passed to
+      a.red target='_blank' href='http://docs.mongodb.org/manual/core/aggregation-introduction/'  MongoDB Aggregations Framework
+      |  to process data records and return computed results.
+    li
+      strong MapReduce:
+      |  For
+      a.red target='_blank' href='https://en.wikipedia.org/wiki/MapReduce'  MapReduce
+      |  solution, the same classifier has been used in `map` function to predict the crime type and emit it.
+      |  The `reduce` function sum up all emitted results by crime type.
+  |  The source code of this solution is available on
+  a.red target='_blank' href='https://github.com/alihasanimam/crimetweets'  GitHub.
+  |  Execution time for each type of solution is measured to compare the performance.
+  |  Select types of crime you want to classify from the drop-down bellow and click on `Search`
+  |  button to see it in action.
+  br
+  br
+  strong Note:
+  |  The performance of MapReduce solution will be most effective when you select more crime types.
+
+= form_tag '', method: 'get', html: { class: "form form-horizontal classifier" }
+  .form-group
+    = label_tag 'crime types (select 5 to 10)', nil, :class => 'control-label'
+    .controls
+      = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select', :multiple => true
+  = submit_tag 'Search', :class => 'btn btn-primary'
+
+.row
+  - if @results.present?
+    .col-lg-6
+      h3 Crime Types
+      /= bar_chart(@results[:data])
+      = pie_chart(@results[:data])
+    .col-lg-6
+      h3 Execution Time (in seconds)
+      = column_chart(@results[:benchmark])
+      /= pie_chart(@results[:benchmark])

@@ -1,0 +1,28 @@
+= javascript_include_tag '//www.google.com/jsapi', 'chartkick'
+
+h1 Crime Tweets by Countries
+p
+  | Some tweets has location data (coordinates) attached with it. We can use these coordinates to
+  |  map it with a specific country and show a hit map of world for tweets of a specific crime type.
+  |  The solution has been done using
+  a.red target='_blank' href='https://en.wikipedia.org/wiki/MapReduce'  MapReduce.
+  |  In `map` function, a
+  a.red href="#{text_classifiers_path}"  Naive Bayes Classifier
+  |  has been used to detect the specific crime type and if that tweet has a coordinates than the
+  |  country name for that coordinate has been emitted. In `reduce` function the countries are sum up by
+  |  the names.
+  |  The source code of this solution is available on
+  a.red target='_blank' href='https://github.com/alihasanimam/crimetweets'  GitHub.
+  |  Select a crime type from bellow to see it in action.
+
+= form_tag '', method: 'get', html: { class: "form form-horizontal classifier" }
+  .form-group
+    = label_tag 'crime type', nil, :class => 'control-label'
+    .controls
+      = select_tag :type, options_for_select(Tweet::CRIMES, params[:type]), :class => 'form-control chosen-select', :multiple => false
+  = submit_tag 'Search', :class => 'btn btn-primary'
+
+- if @result.present?
+  .row
+    h3 World Hit Map for "#{params[:type]}"
+    = geo_chart(@result)

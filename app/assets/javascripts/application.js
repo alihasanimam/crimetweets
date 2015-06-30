@@ -11,8 +11,19 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require chosen-jquery
 //= require turbolinks
-//= require_tree .
+////= require_tree .
+
+$(document).ready(function(){
+    // enable chosen js
+    $('.chosen-select').chosen({
+        allow_single_deselect: true,
+        max_selected_options: 10,
+        no_results_text: 'No results matched',
+        width: '100%'
+    });
+});

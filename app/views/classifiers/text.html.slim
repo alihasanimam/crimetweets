@@ -1,0 +1,41 @@
+= javascript_include_tag 'javascript/bayes.js'
+
+.row
+  h2 Naive Bayes Classifier
+  p
+    | Naive Bayes Classifier is a simple probabilistic classifiers based on applying Bayes' theorem
+    |  with strong (naive) independence assumptions between the features. See details on
+    a.red target='_blank' href= 'https://en.wikipedia.org/wiki/Naive_Bayes_classifier'  Wikipedia.
+    |  The source code of this solution is available on
+    a.red target='_blank' href='https://github.com/alihasanimam/crimetweets'  GitHub.
+.row
+  h2 Classify Crime Type
+  p
+    | There are a total of 1,200 tweets have been used to train the classifier to detect 20 different
+    |  crime types. The definition of these crime types can be found
+    a.red target='_blank' href='http://www.dailywritingtips.com/talking-about-crime/'  here.
+    |  You can test the algorithm by writing something related to a crime and click on "Classify"
+    |  button. Some example text is given bellow:
+  ul
+    li His wife accused him for child beating
+    li A local bank plead guilty to charges of currency fraud
+    li 47 victims of human trafficking return home
+    li Texas man charged in teen's killing
+    li Going undercover as a sex worker
+    li Police suspected 7 for the incident at bank yesterday
+    li People who support this book are traitors of this nation
+  .col-lg-6
+    h4 Crime Text:
+    textarea#bayes-classification style="width: 100%; height: 100px;"
+      | His wife accused him for child beating
+    button.btn.btn-primary onclick='go();' Classify
+  .col-lg-6
+    h4 Result:
+    textarea#bayes-result style="width: 100%; height: 100px;"
+    strong
+      | Best Match:&nbsp;
+      span#best-match.red
+    br
+    strong
+      | Probability:&nbsp;
+      span#best-score.red

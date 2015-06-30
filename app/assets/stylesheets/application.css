@@ -22,3 +22,7 @@
 .clear{
     clear: both;
 }
+
+.red{
+    color: red !important;
+}

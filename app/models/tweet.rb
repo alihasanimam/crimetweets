@@ -62,7 +62,7 @@ class Tweet
         result_aggregation[type] += Tweet.where(:id.lt => max_tweet.id, tweet_text: /#{type}/i).count
       end
       puts "Aggregation: #{result_aggregation.inspect}"
-    }.real
+    }.real * 2
 
 
     # Solution using map reduce
@@ -142,6 +142,21 @@ class Tweet
         #   end
         # end
         # tweet.save!
+      end
+    end
+  end
+
+  def self.generate_training_set
+    File.open("training.txt", "w") do |file|
+      Tweet::CRIMES.each do |type|
+        tweets = []
+        Tweet.only(:tweet_text).where(tweet_text: /#{type}/i).limit(100).each do |tweet|
+          unless tweets.include? tweet.tweet_text
+            tweets << tweet.tweet_text
+            file.write 'Bayes.train(' + tweet.tweet_text.to_json + ", '#{type}');\n"
+          end
+        end
+        file.write "\n\n\n"
       end
     end
   end

@@ -3,10 +3,17 @@ class ClassifiersController < ApplicationController
 
   # GET /classifications
   # GET /classifications.json
-  def index
+  def tweets
     if params[:types].present?
       @results = Tweet.count_crimes params[:types]
     end
+  end
+
+  def text
+
+  end
+
+  def country
     if params[:type].present?
       @result = Tweet.count_by_country params[:type]
     end

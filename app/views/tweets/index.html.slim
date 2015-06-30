@@ -1,6 +1,12 @@
 - model_class = Tweet
 div class="page-header"
   h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+  p
+    | Tweets are collected from twitter by a crawler running 24x7 for two weeks.
+    |  About 2.5 million tweets have been collected so far and these tweets are stored in a MongoDB
+    |  cluster. Total storage size of the database is around 9 GB.
+    |  The source code of this solution is available on
+    a.red target='_blank' href='https://github.com/alihasanimam/crimetweets'  GitHub.
 .pull-right
   = "Showing #{(@tweets.current_page - 1) * 25 + 1}-#{@tweets.current_page * 25} of #{@tweets.total_pages * 25}"
 .clear

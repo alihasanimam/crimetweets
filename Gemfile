@@ -58,3 +58,6 @@ gem 'kaminari'
 gem 'chartkick'
 
 gem 'chosen-rails'
+
+# Fix rails turbolinks jquery initialization problem
+gem 'jquery-turbolinks'
