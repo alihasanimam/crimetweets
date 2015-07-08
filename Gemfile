@@ -70,4 +70,7 @@ group :production, :staging do
   # To enable all platform features in heroku
   # See https://devcenter.heroku.com/articles/rails-integration-gems for more information.
   gem 'rails_12factor'
+
+  # Use passenger as the app server
+  gem 'passenger'
 end
