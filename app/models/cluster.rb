@@ -3,7 +3,7 @@ class Cluster
 
   def self.crime_locations(type, limit = 100000)
     locations = []
-    max_tweet = Tweet.offset(limit).first
+    max_tweet = Tweet.offset(limit).first || Tweet.last
     tweets = Tweet.only(:tweet_place).where(:id.lt => max_tweet.id, tweet_text: /#{type}/i, :tweet_place.ne => nil).limit(limit)
     tweets.each do |tweet|
       coordinates = tweet.try('tweet_place').try(:[], 'bounding_box').try(:[], 'coordinates')
