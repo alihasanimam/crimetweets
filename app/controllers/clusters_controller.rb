@@ -4,7 +4,9 @@ class ClustersController < ApplicationController
   # GET /clusters
   # GET /clusters.json
   def index
-    @markers = Cluster.crime_locations('murder')
+    if params[:type].present?
+      @markers = Cluster.crime_locations(params[:type])
+    end
   end
 
   # GET /clusters/1
