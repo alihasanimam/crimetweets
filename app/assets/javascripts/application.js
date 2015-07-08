@@ -31,3 +31,12 @@ $(document).ready(function(){
         width: '100%'
     });
 });
+
+$(document).on('page:fetch', function() {
+    return $('#content').animate({marginLeft: '-150%'}, 'slow');
+});
+
+$(document).on('page:change', function() {
+//    return $('#content').css({marginLeft: '100%'}).animate({marginLeft: '0%'}, 'fast');
+    return $('#content').hide().fadeIn('slow');
+});
