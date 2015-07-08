@@ -17,6 +17,8 @@
 //= require chosen-jquery
 //= require underscore
 //= require gmaps/google
+//= require nprogress
+//= require nprogress-turbolinks
 //= require turbolinks
 ////= require_tree .
 

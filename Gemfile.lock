@@ -97,6 +97,7 @@ GEM
     multi_json (1.11.1)
     multipart-post (2.0.0)
     naught (1.0.0)
+    nprogress-rails (0.1.6.7)
     optionable (0.2.0)
     origin (2.1.1)
     passenger (5.0.13)
@@ -203,6 +204,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   mongoid (~> 4.0.0)
+  nprogress-rails
   passenger
   rails (= 4.1.6)
   rails_12factor

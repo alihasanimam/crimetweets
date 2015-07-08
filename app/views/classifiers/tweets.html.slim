@@ -38,7 +38,7 @@ p
     = label_tag 'crime types (select 5 to 10)', nil, :class => 'control-label'
     .controls
       = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select', :multiple => true
-  = submit_tag 'Search', :class => 'btn btn-primary'
+  = submit_tag 'Search', :class => 'btn btn-primary', :onclick => 'NProgress.start();'
 
 .row
   - if @results.present?
