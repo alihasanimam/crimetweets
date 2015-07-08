@@ -42,7 +42,15 @@ html lang="en"
                     =link_to 'Classify Crime Tweets', tweets_classifiers_path
                   li
                     =link_to 'Crime Tweets by Country', country_classifiers_path
-              li= link_to 'Data Mining', '#'
+              li.dropdown
+                a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                  | Data Mining
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    =link_to 'Single-linkage clustering', slink_clusters_path
+                  li
+                    =link_to 'k-means clustering', '#'
 
     .container
       .row

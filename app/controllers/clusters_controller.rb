@@ -3,7 +3,7 @@ class ClustersController < ApplicationController
 
   # GET /clusters
   # GET /clusters.json
-  def index
+  def slink
     if params[:type].present?
       @markers = Cluster.crime_locations(params[:type])
     end
