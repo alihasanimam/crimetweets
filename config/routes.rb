@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :clusters
+  resources :clusters, only: [] do
+    collection do
+      get :slink
+      get :kmeans
+    end
+  end
 
   resources :tweets
 
