@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require chosen-jquery
+//= require underscore
+//= require gmaps/google
 //= require turbolinks
 ////= require_tree .
 

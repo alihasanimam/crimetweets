@@ -61,3 +61,13 @@ gem 'chosen-rails'
 
 # Fix rails turbolinks jquery initialization problem
 gem 'jquery-turbolinks'
+
+# Google Maps for clustering
+gem 'underscore-rails'
+gem 'gmaps4rails'
+
+group :production, :staging do
+  # To enable all platform features in heroku
+  # See https://devcenter.heroku.com/articles/rails-integration-gems for more information.
+  gem 'rails_12factor'
+end

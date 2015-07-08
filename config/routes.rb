@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :clusters
+
   resources :tweets
 
   resources :classifiers, only: [] do
