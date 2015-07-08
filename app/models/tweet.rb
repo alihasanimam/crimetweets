@@ -36,7 +36,7 @@ class Tweet
 
   index({ created_at: 1 }, {name: 'created_at_index' })
 
-  def self.count_crimes(types = ['crime'], limit=2000)
+  def self.count_crimes(types = ['crime'], limit=100000)
     results = {benchmark: {}}
     result_traditional = Hash[types.product([0])]
     result_aggregation = Hash[types.product([0])]
@@ -57,7 +57,7 @@ class Tweet
 
     # Solution using aggregation framework
     results[:benchmark][:aggregation] = Benchmark.measure{
-      max_tweet = Tweet.offset(limit).first
+      max_tweet = Tweet.offset(limit).first || Tweet.last
       types.each do |type|
         result_aggregation[type] += Tweet.where(:id.lt => max_tweet.id, tweet_text: /#{type}/i).count
       end
