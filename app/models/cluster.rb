@@ -18,12 +18,12 @@ class Cluster
     return locations
   end
 
-  def self.k_means
-    centroids = [[56.087228, -108.651087], [37.321928, -82.283899], [50.194330, 11.407507], [22.456503, 82.071571], [-23.216328, 146.934853]]
+  def self.k_means(type, limit = 1000)
+    centroids = [[52.012173, -113.678014], [37.387922, -111.217077], [36.967756, -96.451451], [43.149374, -73.424107], [31.747181, -88.189732], [-19.372978, -49.693638], [52.909830, -0.527743], [45.707254, 8.085538], [11.524596, 19.335538], [44.841382, 83.671476], [21.290808, 83.495694], [-22.754501, 147.304290]]
     5.times do
       map = %Q{
         function(){
-          var tweet = this;
+          if(this.tweet_text.search(/#{type}/i) < 0) return;
           var min_distance = {key: [0, 0], value: 360};
           var mean = [0 , 0];
           var count = 0;
@@ -62,11 +62,11 @@ class Cluster
       }
 
       @results = {}
-      Tweet.where(:tweet_place.ne => nil).limit(1000).map_reduce(map, reduce).out(inline: true).each do |result|
+      Tweet.where(:tweet_place.ne => nil).limit(limit).map_reduce(map, reduce).out(inline: true).each do |result|
         @results[result['_id']] = result['value']
         centroids[centroids.index(result['_id'])] = result['value']['coordinates']
       end
-      puts @results.inspect
+      # puts @results.inspect
     end
 
     return @results
