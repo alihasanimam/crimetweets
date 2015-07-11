@@ -1,5 +1,4 @@
 class Cluster
-  include Mongoid::Document
 
   def self.crime_locations(type, limit = 100000)
     locations = []
