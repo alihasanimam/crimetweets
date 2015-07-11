@@ -5,7 +5,7 @@ class ClassifiersController < ApplicationController
   # GET /classifications.json
   def tweets
     if params[:types].present?
-      @results = Tweet.count_crimes params[:types]
+      @results = Classifier.count_crimes params[:types]
     end
   end
 
@@ -15,18 +15,7 @@ class ClassifiersController < ApplicationController
 
   def country
     if params[:type].present?
-      @result = Tweet.count_by_country params[:type]
+      @result = Classifier.count_by_country params[:type]
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_classifier
-      @classifier = Classifier.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def classifier_params
-      params.require(:classifier).permit(:text)
-    end
 end

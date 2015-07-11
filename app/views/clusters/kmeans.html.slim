@@ -14,7 +14,9 @@ br
   .row
     - params[:types].each_with_index do |type, i|
       span style="background-color: #{@colors[i]};" &nbsp;&nbsp;&nbsp;
-      strong style="color: #{@colors[i]};" =type
+      strong style="color: #{@colors[i]};"
+        = type
+        | &nbsp;&nbsp;
   .row#multi_markers style='width: 100%; height: 500px;'
   javascript:
     var handler = Gmaps.build('Google');
