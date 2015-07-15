@@ -2,7 +2,7 @@
 
 h1 Classify Crime Tweets
 p
-  | There are 2.5 millions tweets have been collected so far by a twitter crawler.
+  | There are 8.5 millions tweets have been collected so far by a twitter crawler.
   |  These tweets have been stored in a MongoDB cluster. The
   a.red href="#{text_classifiers_path}"  Naive Bayes Classifier
   |  has been used to classify crime types a tweet is talking about. The solution has been done in three
@@ -35,9 +35,9 @@ p
 
 = form_tag '', method: 'get', html: { class: "form form-horizontal classifier" }
   .form-group
-    = label_tag 'crime types (select 5 to 10)', nil, :class => 'control-label'
+    = label_tag 'crime types (select 3 to 7)', nil, :class => 'control-label'
     .controls
-      = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select', :multiple => true
+      = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select-1', :multiple => true
   = submit_tag 'Search', :class => 'btn btn-primary', :onclick => 'NProgress.start();'
 
 .row
