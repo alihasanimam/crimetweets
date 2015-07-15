@@ -4,9 +4,9 @@ script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclust
 h1 k-means clustering
 = form_tag '', method: 'get', html: { class: "form form-horizontal classifier" }
   .form-group
-    = label_tag 'crime types (select 2 to 5)', nil, :class => 'control-label'
+    = label_tag 'crime types (select 1 to 3)', nil, :class => 'control-label'
     .controls
-      = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select', :multiple => true
+      = select_tag :types, options_for_select(Tweet::CRIMES, params[:types]), :class => 'form-control chosen-select-2', :multiple => true
   = submit_tag 'Cluster', :class => 'btn btn-primary', :onclick => 'NProgress.start();'
 br
 br

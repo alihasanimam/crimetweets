@@ -26,7 +26,7 @@ class Classifier
         result_aggregation[type] += Tweet.where(:id.lt => max_tweet.id, tweet_text: /#{type}/i).count
       end
       puts "Aggregation: #{result_aggregation.inspect}"
-    }.real * 2
+    }.real * 3
 
 
     # Solution using map reduce

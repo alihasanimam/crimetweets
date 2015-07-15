@@ -24,9 +24,15 @@
 
 $(document).ready(function(){
     // enable chosen js
-    $('.chosen-select').chosen({
+    $('.chosen-select-1').chosen({
         allow_single_deselect: true,
-        max_selected_options: 10,
+        max_selected_options: 7,
+        no_results_text: 'No results matched',
+        width: '100%'
+    });
+    $('.chosen-select-2').chosen({
+        allow_single_deselect: true,
+        max_selected_options: 3,
         no_results_text: 'No results matched',
         width: '100%'
     });
