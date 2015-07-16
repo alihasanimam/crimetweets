@@ -29,7 +29,7 @@ html lang="en"
             span.icon-bar
           a.navbar-brand href="#{root_url}" CrimeTweets
           .navbar-collapse.collapse.navbar-responsive-collapse
-            ul.nav.navbar-nav
+            ul.nav.navbar-nav.navbar-left
               li= link_to 'Tweets', tweets_path
               li.dropdown
                 a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
@@ -48,9 +48,17 @@ html lang="en"
                   span.caret
                 ul.dropdown-menu
                   li
-                    =link_to 'single-linkage clustering', slink_clusters_path
+                    =link_to 'Grid Based clustering', slink_clusters_path
                   li
                     =link_to 'k-means clustering', kmeans_clusters_path
+            ul.nav.navbar-nav.navbar-right
+              li
+                a href="https://github.com/alihasanimam/crimetweets"
+                  =image_tag('github.png')
+                  | Source Code
+              li
+                a href="https://it.linkedin.com/pub/ali-hasan-imam/33/126/69"
+                  img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_myprofile_160x33.png" width="160" height="33" border="0" alt="View Ali Hasan Imam's profile on LinkedIn"
 
     .container
       .row
@@ -59,4 +67,4 @@ html lang="en"
           = yield
 
       footer
-        p &copy; Company 2015
+        p style="color: red;" &copy; This application is a part of Big Data and Data Mining course works and published under creative common license.
